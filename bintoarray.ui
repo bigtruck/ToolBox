@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BinToArray</class>
+ <widget class="QWidget" name="BinToArray">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>515</width>
+    <height>499</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="pb_OpenBin">
+         <property name="text">
+          <string>打开bin文件</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>30</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pb_CreateCFile">
+         <property name="text">
+          <string>生成c文件</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="tl_FilePath">
+       <property name="text">
+        <string>未选择文件</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="QGroupBox" name="groupBox_2">
+         <property name="title">
+          <string>数组前缀</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="0">
+           <widget class="QTextEdit" name="te_CFileEnd"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="groupBox_1">
+         <property name="title">
+          <string>数组后缀</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QTextEdit" name="te_CFileHead"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pb_OpenBin</sender>
+   <signal>clicked()</signal>
+   <receiver>BinToArray</receiver>
+   <slot>pbClick_OpenBin()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>58</x>
+     <y>19</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>101</x>
+     <y>3</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pb_CreateCFile</sender>
+   <signal>clicked()</signal>
+   <receiver>BinToArray</receiver>
+   <slot>pbClick_CreatCFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>333</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>297</x>
+     <y>0</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>pbClick_OpenBin()</slot>
+  <slot>pbClick_CreatCFile()</slot>
+ </slots>
+</ui>
