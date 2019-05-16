@@ -20,6 +20,8 @@ BinToArrayThread::~BinToArrayThread()
 
 void BinToArrayThread::run()
 {
+//    qDebug(this->binPath.toUtf8());
+//    qDebug(this->savePath.toUtf8());
     qDebug() << this->binPath.toUtf8();
     qDebug() << this->savePath.toUtf8();
 
@@ -43,43 +45,42 @@ void BinToArrayThread::run()
     {
         return ;
     }
-    char *inBuffer = (char *)malloc(1024*1024);
-    char *outBuffer = (char *)malloc(1024*1024*6);
-    char *startAddr = outBuffer;
-    if (inBuffer == nullptr || outBuffer == nullptr)
-	{
-		return;
-	}
+
+    QByteArray arrayReadBuff;
+
+    QString outStr ;
     qint64 inSize = inFile.size();
     qint64 readSize;
     QString inStr;
     qint64 outIndex;
     while( inSize)
     {
-        readSize = inFile.read(inBuffer,1024*1024);
+        arrayReadBuff.clear();
+        inStr.clear();
+        arrayReadBuff = inFile.read(1024 * 1024);
+        readSize = arrayReadBuff.length();
         if(inSize >= readSize) inSize -= readSize;
         else inSize = 0 ;
         outIndex = 0 ;
-        for (qint64 i=0; i<readSize; i++)
+        for (quint32 i=0; i<readSize; i++)
         {
             if(0 == (i % 16))
             {
 #ifdef Q_OS_WIN
-                *outBuffer++ = '\r';
+                inStr.append("\r\n");
+#else
+                inStr.append("\n");
 #endif
-                *outBuffer++ = '\n';
             }
-            outIndex = sprintf(outBuffer,"0x%02X,",(unsigned char)inBuffer[i]);
-            outBuffer += outIndex;
+            unsigned char ch = arrayReadBuff[i];
+            inStr.append(QString("%1%2,").arg("0x").arg(ch,2,16,QLatin1Char('0')));
         }
+        QByteArray arrayOut = inStr.toLatin1();
+        outFile.write(arrayOut,arrayOut.length());
     }
-    free(inBuffer);
-    free(outBuffer);
     inFile.close();
-    outFile.write(startAddr,outBuffer - startAddr);
     outFile.close();
-    //qDebug("exit");
-    qDebug() << "thread exit";
+    qDebug("exit");
     emit ThreadExit();
 }
 
