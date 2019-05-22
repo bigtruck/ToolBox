@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>218</width>
-    <height>260</height>
+    <width>290</width>
+    <height>386</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -30,9 +30,6 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_2">
-    <property name="sizeConstraint">
-     <enum>QLayout::SetDefaultConstraint</enum>
-    </property>
     <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout">
       <property name="sizeConstraint">
@@ -44,7 +41,7 @@
       <property name="verticalSpacing">
        <number>0</number>
       </property>
-      <item row="1" column="0">
+      <item row="2" column="0">
        <widget class="QPushButton" name="pb_BinToArray">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -84,7 +81,20 @@
          </size>
         </property>
         <property name="text">
-         <string>Bin To Array</string>
+         <string>Bin转换为c数组</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="pb_Splicing">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="text">
+         <string>拼接bin文件</string>
         </property>
        </widget>
       </item>

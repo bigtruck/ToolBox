@@ -4,31 +4,30 @@
 #include <QWidget>
 #include <QThread>
 
-#include "bintoarraythread.h"
+#include "converttoarray_thread.h"
 namespace Ui {
-class BinToArray;
+class ConvertToArray;
 }
 
-class BinToArray : public QWidget
+class ConvertToArray : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit BinToArray(QWidget *parent = nullptr);
-    ~BinToArray();
+    explicit ConvertToArray(QWidget *parent = nullptr);
+    ~ConvertToArray();
 
 private:
-    Ui::BinToArray *ui;
+    Ui::ConvertToArray *ui;
 
 public slots:
     void pbClick_OpenBin();
     void pbClick_CreatCFile();
-private slots:
-    void threadExit11();
+    void convertDone();
+    void convertProgress(int);
 
 public:
     QString binFilePath ;
-    BinToArrayThread *thread ;
 };
 
 #endif // BINTOARRAY_H

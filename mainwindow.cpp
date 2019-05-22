@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
-#include "bintoarray.h"
+#include "converttoarray.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,10 +16,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::pbClick_BinToArray()
 {
-    BinToArray *binToArray = new BinToArray();
+    ConvertToArray *binToArray = new ConvertToArray();
     binToArray->setAttribute(Qt::WA_QuitOnClose,false);
     binToArray->setAttribute(Qt::WA_DeleteOnClose,true);
-    binToArray->setWindowTitle(tr("Bin To Array"));
+    binToArray->setWindowTitle(tr("Convert To Array"));
     binToArray->show();
 }
 

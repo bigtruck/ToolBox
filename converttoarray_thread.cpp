@@ -1,27 +1,23 @@
-#include "bintoarraythread.h"
+#include "converttoarray_thread.h"
 #include <QDebug>
 #include <QFile>
-//#include <cstdlib>
-#include <cstdio>
 
-//#define READ_INFILE_BUFFER_SIZE     (1024*1024)
+#define READ_INFILE_BUFFER_SIZE     (1024*512)
 
 
-BinToArrayThread::BinToArrayThread()
+ConvertToArray_Thread::ConvertToArray_Thread()
 {
     binPath.clear();
     savePath.clear();
 }
 
-BinToArrayThread::~BinToArrayThread()
+ConvertToArray_Thread::~ConvertToArray_Thread()
 {
 
 }
 
-void BinToArrayThread::run()
+void ConvertToArray_Thread::run()
 {
-//    qDebug(this->binPath.toUtf8());
-//    qDebug(this->savePath.toUtf8());
     qDebug() << this->binPath.toUtf8();
     qDebug() << this->savePath.toUtf8();
 
@@ -49,18 +45,22 @@ void BinToArrayThread::run()
     QByteArray arrayReadBuff;
 
     QString outStr ;
-    qint64 inSize = inFile.size();
+    qint64 totalSize = inFile.size();
     qint64 readSize;
     QString inStr;
     qint64 outIndex;
-    while( inSize)
+    qint64 prog_total = totalSize;
+    qint64 prog_deal = 0 ;
+
+    outFile.write(headText.toUtf8(),headText.length());
+    while( totalSize)
     {
         arrayReadBuff.clear();
         inStr.clear();
-        arrayReadBuff = inFile.read(1024 * 1024);
+        arrayReadBuff = inFile.read(READ_INFILE_BUFFER_SIZE);
         readSize = arrayReadBuff.length();
-        if(inSize >= readSize) inSize -= readSize;
-        else inSize = 0 ;
+        if(totalSize >= readSize) totalSize -= readSize;
+        else totalSize = 0 ;
         outIndex = 0 ;
         for (quint32 i=0; i<readSize; i++)
         {
@@ -73,11 +73,15 @@ void BinToArrayThread::run()
 #endif
             }
             unsigned char ch = arrayReadBuff[i];
-            inStr.append(QString("%1%2,").arg("0x").arg(ch,2,16,QLatin1Char('0')));
+            inStr.append(QString("0x%1,").arg(ch,2,16,QLatin1Char('0')));
         }
+
         QByteArray arrayOut = inStr.toLatin1();
         outFile.write(arrayOut,arrayOut.length());
+        prog_deal += readSize;
+        emit Progress((int)((prog_deal * 100 / prog_total)));
     }
+    outFile.write(endText.toUtf8(),endText.length());
     inFile.close();
     outFile.close();
     qDebug("exit");

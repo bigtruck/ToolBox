@@ -4,15 +4,17 @@
 #include <QThread>
 #include <QtDebug>
 
-class BinToArrayThread : public QThread
+class ConvertToArray_Thread : public QThread
 {
     Q_OBJECT
 public:
-    BinToArrayThread();
-    ~BinToArrayThread();
+    ConvertToArray_Thread();
+    ~ConvertToArray_Thread();
     void run();
     QString binPath;
     QString savePath;
+    QString headText;
+    QString endText;
 
 signals:
     void Progress(int);

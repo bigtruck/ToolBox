@@ -25,18 +25,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        bintoarray.cpp \
-        bintoarraythread.cpp \
+        binsplicing.cpp \
+        converttoarray.cpp \
+        converttoarray_thread.cpp \
         main.cpp \
         mainwindow.cpp
 
 HEADERS += \
-        bintoarray.h \
-        bintoarraythread.h \
+        binsplicing.h \
+        converttoarray.h \
+        converttoarray_thread.h \
         mainwindow.h
 
 FORMS += \
-        bintoarray.ui \
+        binsplicing.ui \
+        converttoarray.ui \
         mainwindow.ui
 
 # Default rules for deployment.

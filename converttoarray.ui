@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>BinToArray</class>
- <widget class="QWidget" name="BinToArray">
+ <class>ConvertToArray</class>
+ <widget class="QWidget" name="ConvertToArray">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>515</width>
-    <height>499</height>
+    <width>665</width>
+    <height>596</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -63,7 +63,7 @@
          </property>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
-           <widget class="QTextEdit" name="te_CFileEnd"/>
+           <widget class="QTextEdit" name="te_CFileHead"/>
           </item>
          </layout>
         </widget>
@@ -75,12 +75,25 @@
          </property>
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0">
-           <widget class="QTextEdit" name="te_CFileHead"/>
+           <widget class="QTextEdit" name="te_CFileEnd"/>
           </item>
          </layout>
         </widget>
        </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QProgressBar" name="pb_Convert">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="value">
+        <number>24</number>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -91,7 +104,7 @@
   <connection>
    <sender>pb_OpenBin</sender>
    <signal>clicked()</signal>
-   <receiver>BinToArray</receiver>
+   <receiver>ConvertToArray</receiver>
    <slot>pbClick_OpenBin()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -107,7 +120,7 @@
   <connection>
    <sender>pb_CreateCFile</sender>
    <signal>clicked()</signal>
-   <receiver>BinToArray</receiver>
+   <receiver>ConvertToArray</receiver>
    <slot>pbClick_CreatCFile()</slot>
    <hints>
     <hint type="sourcelabel">
