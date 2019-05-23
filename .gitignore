@@ -1,0 +1,4 @@
+*.stash
+*.o
+*.user
+ToolBox-debug
