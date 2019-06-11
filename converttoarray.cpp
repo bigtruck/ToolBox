@@ -1,5 +1,5 @@
 #include "converttoarray.h"
-#include "ui_bintoarray.h"
+#include "ui_converttoarray.h"
 #include <QFileDialog>
 #include <QFile>
 #include <QMessageBox>
